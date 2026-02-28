@@ -463,7 +463,7 @@
       toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
       toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
       if (toggleLabel) {
-        toggleLabel.textContent = isOpen ? "Close" : "Menu";
+        toggleLabel.textContent = isOpen ? "\u2715" : "\u2630";
       }
       backdrop.hidden = !isOpen;
     };
