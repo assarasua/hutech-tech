@@ -1,5 +1,7 @@
 (() => {
   const CONTENT_URL = "assets/data/site-content.json";
+  const MOBILE_NAV_BREAKPOINT = 900;
+  const MOBILE_TEAM_BREAKPOINT = 700;
   let currentBookingUrl = "mailto:as@hutech.ventures";
   let currentCtaConfig = {
     primary_label: "Email us",
@@ -24,7 +26,9 @@
 
     setCurrentYear();
     setupRevealAnimations();
+    setupMobileNav();
     setupStickyCtaVisibility();
+    setupTeamAccordion();
 
     if (page === "home") {
       const content = await loadContent();
@@ -397,11 +401,14 @@
       return;
     }
 
+    const finalCtaSection = document.getElementById("connect");
+    let finalCtaInView = false;
     let threshold = Math.max(280, Math.round(window.innerHeight * 0.6));
     let ticking = false;
 
     const updateVisibility = () => {
-      stickyCta.classList.toggle("is-visible", window.scrollY > threshold);
+      const shouldShow = window.scrollY > threshold && !finalCtaInView;
+      stickyCta.classList.toggle("is-visible", shouldShow);
       ticking = false;
     };
 
@@ -420,7 +427,123 @@
       updateVisibility();
     });
 
+    if (finalCtaSection && "IntersectionObserver" in window) {
+      const finalCtaObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            finalCtaInView = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+            updateVisibility();
+          });
+        },
+        {
+          threshold: [0.35]
+        }
+      );
+      finalCtaObserver.observe(finalCtaSection);
+    }
+
     updateVisibility();
+  }
+
+  function setupMobileNav() {
+    const toggle = document.getElementById("nav-toggle");
+    const drawer = document.getElementById("nav-drawer");
+    const backdrop = document.getElementById("nav-backdrop");
+
+    if (!toggle || !drawer || !backdrop) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_NAV_BREAKPOINT}px)`);
+    const navLinks = drawer.querySelectorAll('a[href^="#"]');
+
+    const setNavState = (isOpen) => {
+      document.body.classList.toggle("is-nav-open", isOpen);
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+      backdrop.hidden = !isOpen;
+    };
+
+    const closeNav = () => setNavState(false);
+    const openNav = () => setNavState(true);
+
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    });
+
+    backdrop.addEventListener("click", closeNav);
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", closeNav);
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        closeNav();
+        toggle.focus({ preventScroll: true });
+      }
+    });
+
+    const handleViewportChange = () => {
+      if (!mediaQuery.matches) {
+        closeNav();
+      }
+    };
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleViewportChange);
+    } else {
+      mediaQuery.addListener(handleViewportChange);
+    }
+
+    handleViewportChange();
+  }
+
+  function setupTeamAccordion() {
+    const accordion = document.getElementById("team-accordion");
+    if (!accordion) {
+      return;
+    }
+
+    const items = Array.from(accordion.querySelectorAll(".team-accordion-item"));
+    if (items.length === 0) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_TEAM_BREAKPOINT}px)`);
+
+    const applyViewportMode = () => {
+      items.forEach((item, index) => {
+        item.open = mediaQuery.matches ? index === 0 : true;
+      });
+    };
+
+    items.forEach((item) => {
+      item.addEventListener("toggle", () => {
+        if (!mediaQuery.matches || !item.open) {
+          return;
+        }
+
+        items.forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.open = false;
+          }
+        });
+      });
+    });
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", applyViewportMode);
+    } else {
+      mediaQuery.addListener(applyViewportMode);
+    }
+
+    applyViewportMode();
   }
 
   function setupRevealAnimations() {

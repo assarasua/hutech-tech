@@ -48,15 +48,23 @@
         <img src="assets/img/brand-mark.svg" width="32" height="32" alt="" aria-hidden="true">
         <span>HuTech Product Studio</span>
       </a>
-      <nav aria-label="Primary navigation">
-        <ul class="nav-list">
-          <li><a href="#what-we-build">What We Build</a></li>
-          <li><a href="#incubation-model">Incubation Model</a></li>
-          <li><a href="#case-studies">Case Studies</a></li>
-          <li><a href="#why-hutech">Why HuTech Studio</a></li>
-          <li><a href="#about-hutech">HuTech Ventures</a></li>
-        </ul>
-      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+        <span class="nav-toggle-line" aria-hidden="true"></span>
+        <span class="nav-toggle-line" aria-hidden="true"></span>
+        <span class="nav-toggle-line" aria-hidden="true"></span>
+      </button>
+      <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+      <div class="nav-drawer" id="nav-drawer">
+        <nav id="primary-nav" aria-label="Primary navigation">
+          <ul class="nav-list">
+            <li><a href="#what-we-build">What We Build</a></li>
+            <li><a href="#incubation-model">Incubation Model</a></li>
+            <li><a href="#case-studies">Case Studies</a></li>
+            <li><a href="#why-hutech">Why HuTech Studio</a></li>
+            <li><a href="#about-hutech">HuTech Ventures</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -161,23 +169,28 @@
         </p>
         <article class="why-team-panel" data-reveal>
           <h3>Who We Are</h3>
-          <ul class="team-list">
-            <li><strong>Alberto Martinez</strong> is the Full Stack Developer in HuTech Product Studio, responsible for building reliable end-to-end web applications, shipping product features fast, and keeping technical delivery quality high.
-              <a href="https://www.linkedin.com/in/almarto/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
-              <a href="https://github.com/almarto" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </li>
-            <li><strong>Kaustubh Lall</strong> is the Data Scientist in HuTech Product Studio, focused on turning raw data into practical insights, predictive models, and decision-support systems that improve product and operational outcomes.
-              <a href="https://www.linkedin.com/in/kaustubh-lall/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
-              <a href="https://github.com/KaustubhLall/" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </li>
-            <li><strong>Asier Sarasua</strong> is the 360 Product Builder in HuTech Product Studio, connecting strategy, product design, and execution to define the right problems, prioritize solutions, and drive measurable results.
-              <a href="https://www.linkedin.com/in/asarasua/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
-              <a href="https://github.com/assarasua" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </li>
-            <li><strong>Hussain Ahamed</strong> provides strategic venture guidance to HuTech Product Studio, helping align product direction with market opportunities, partnerships, and long-term value creation.
-              <a href="https://www.linkedin.com/in/hussainahamed/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </li>
-          </ul>
+          <div class="team-accordion" id="team-accordion">
+            <details class="team-accordion-item" open>
+              <summary><span class="person-name">Alberto Martinez</span><span class="person-role">Full Stack Developer</span></summary>
+              <p>Alberto Martinez is the Full Stack Developer in HuTech Product Studio, responsible for building reliable end-to-end web applications, shipping product features fast, and keeping technical delivery quality high.</p>
+              <p class="person-links"><a href="https://www.linkedin.com/in/almarto/" target="_blank" rel="noopener noreferrer">LinkedIn</a> <span aria-hidden="true">|</span> <a href="https://github.com/almarto" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            </details>
+            <details class="team-accordion-item" open>
+              <summary><span class="person-name">Kaustubh Lall</span><span class="person-role">Data Scientist</span></summary>
+              <p>Kaustubh Lall is the Data Scientist in HuTech Product Studio, focused on turning raw data into practical insights, predictive models, and decision-support systems that improve product and operational outcomes.</p>
+              <p class="person-links"><a href="https://www.linkedin.com/in/kaustubh-lall/" target="_blank" rel="noopener noreferrer">LinkedIn</a> <span aria-hidden="true">|</span> <a href="https://github.com/KaustubhLall/" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            </details>
+            <details class="team-accordion-item" open>
+              <summary><span class="person-name">Asier Sarasua</span><span class="person-role">360 Product Builder</span></summary>
+              <p>Asier Sarasua is the 360 Product Builder in HuTech Product Studio, connecting strategy, product design, and execution to define the right problems, prioritize solutions, and drive measurable results.</p>
+              <p class="person-links"><a href="https://www.linkedin.com/in/asarasua/" target="_blank" rel="noopener noreferrer">LinkedIn</a> <span aria-hidden="true">|</span> <a href="https://github.com/assarasua" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            </details>
+            <details class="team-accordion-item" open>
+              <summary><span class="person-name">Hussain Ahamed</span><span class="person-role">Strategic Venture Advisor</span></summary>
+              <p>Hussain Ahamed provides strategic venture guidance to HuTech Product Studio, helping align product direction with market opportunities, partnerships, and long-term value creation.</p>
+              <p class="person-links"><a href="https://www.linkedin.com/in/hussainahamed/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+            </details>
+          </div>
           <p class="about-team-note">HuTech Product Studio operates as part of HuTech Ventures.</p>
         </article>
         <div class="why-grid">
@@ -244,6 +257,8 @@
       </div>
     </section>
   </main>
+
+  <a class="sticky-cta js-sticky-cta js-booking-link" data-source="mobile_sticky_email" href="mailto:as@hutech.ventures">Email us</a>
 
   <footer class="site-footer">
     <div class="container footer-inner">
