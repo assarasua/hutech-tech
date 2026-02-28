@@ -198,6 +198,10 @@ img {
   padding: clamp(3.2rem, 6vw, 5.5rem) 0;
 }
 
+main section[id] {
+  scroll-margin-top: 96px;
+}
+
 .section-compact {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
