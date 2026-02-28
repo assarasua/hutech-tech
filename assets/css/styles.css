@@ -598,11 +598,26 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.4rem;
 }
 
 .final-cta-inner p {
   color: var(--text-muted);
+}
+
+.final-cta-copy {
+  max-width: 70ch;
+}
+
+.final-cta-copy h2 {
+  margin-bottom: 0;
+}
+
+.btn-final-cta {
+  min-width: 200px;
+  min-height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 14px 30px rgba(0, 95, 106, 0.32);
 }
 
 .sticky-cta {
@@ -724,12 +739,13 @@ p {
 
   .final-cta-inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 1rem;
   }
 
   .final-cta-inner .btn {
     width: 100%;
-    max-width: 360px;
+    max-width: none;
   }
 }
 
@@ -774,6 +790,16 @@ p {
   .about-card,
   .why-grid article {
     padding: 1rem 0.95rem;
+  }
+
+  .final-cta {
+    padding-top: 2.6rem;
+    padding-bottom: 2.6rem;
+  }
+
+  .final-cta-copy h2 {
+    font-size: clamp(1.45rem, 6.4vw, 2rem);
+    line-height: 1.28;
   }
 
   .about-list {
