@@ -1,5 +1,11 @@
 name = "hutech-tech"
 compatibility_date = "2026-02-28"
+workers_dev = true
+
+routes = [
+  { pattern = "hutech.tech/*", zone_name = "hutech.tech" },
+  { pattern = "www.hutech.tech/*", zone_name = "hutech.tech" }
+]
 
 [assets]
 directory = "."
