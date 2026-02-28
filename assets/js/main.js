@@ -4,7 +4,7 @@
   let currentCtaConfig = {
     primary_label: "Email us",
     secondary_label: "View case study",
-    helper_text: "Email us only: as@hutech.ventures"
+    helper_text: "Use the button to email us."
   };
   const BOOKING_UTM_DEFAULTS = {
     utm_source: "incubation_studio_site",

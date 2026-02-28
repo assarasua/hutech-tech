@@ -2,12 +2,12 @@
   "site": {
     "studio_name": "HuTech Product Studio",
     "hero_headline": "We accelerate any challenge into practical solutions and measurable outcomes.",
-    "hero_subhead": "HuTech Product Studio, part of HuTech Ventures, works across product, operational, and growth challenges using a structured model from Problem to Prototype to Minimum Awesome Product.",
+    "hero_subhead": "HuTech Product Studio is part of HuTech Ventures. We turn product, operational, and growth problems into working solutions and measurable outcomes using a structured path from Problem to Prototype to Minimum Awesome Product.",
     "booking_url": "mailto:as@hutech.ventures",
     "contact_email": "as@hutech.ventures"
   },
   "brand_distinction": {
-    "message": "HuTech Ventures and HuTech Tech are separate initiatives. This site represents HuTech Product Studio within HuTech Ventures.",
+    "message": "As the product studio inside HuTech Ventures, we help teams define problems, build the right solution quickly, and drive adoption with clear outcome metrics.",
     "hutech_tech_url": ""
   },
   "trust_signals": [
@@ -31,7 +31,7 @@
   "cta": {
     "primary_label": "Email us",
     "secondary_label": "View case study",
-    "helper_text": "Email us only: as@hutech.ventures"
+    "helper_text": "Use the button to email us."
   },
   "capabilities": [
     {
