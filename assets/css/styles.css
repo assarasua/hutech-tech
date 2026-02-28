@@ -429,6 +429,12 @@ p {
   color: var(--text-muted);
 }
 
+.about-team-note {
+  margin-top: 0.9rem;
+  color: #264c5e;
+  font-weight: 600;
+}
+
 .lane-card {
   background: var(--surface);
   border: 1px solid var(--line);
