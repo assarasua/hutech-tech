@@ -1,0 +1,7 @@
+name = "hutech-tech"
+compatibility_date = "2026-02-28"
+
+[assets]
+directory = "."
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"

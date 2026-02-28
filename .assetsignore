@@ -1,0 +1,8 @@
+# Keep deploy uploads limited to website assets and pages.
+node_modules/
+.git/
+.wrangler/
+skills/
+scripts/
+.DS_Store
+package.json
