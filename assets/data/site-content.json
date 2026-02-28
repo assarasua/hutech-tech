@@ -1,0 +1,90 @@
+{
+  "site": {
+    "studio_name": "HuTech Ventures",
+    "hero_headline": "We incubate product ideas into validated solutions.",
+    "hero_subhead": "HuTech Ventures partners with internal teams and external organizations to move from problem framing to working prototypes and production-ready handoff plans.",
+    "booking_url": "https://cal.com/hutech-ventures/discovery",
+    "contact_email": "studio@hutech.ventures"
+  },
+  "capabilities": [
+    {
+      "title": "Product Opportunity Framing",
+      "description": "Align on outcomes, users, constraints, and success metrics before engineering begins."
+    },
+    {
+      "title": "Rapid Prototype Engineering",
+      "description": "Ship realistic prototypes that test interaction quality and technical feasibility early."
+    },
+    {
+      "title": "Validation and Handoff",
+      "description": "Convert pilot learnings into measurable recommendations and implementation-ready artifacts."
+    }
+  ],
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Discover",
+      "description": "Clarify user needs, constraints, and success signals with a concise problem brief."
+    },
+    {
+      "step": "02",
+      "title": "Prototype",
+      "description": "Build and iterate a focused solution slice that demonstrates value quickly."
+    },
+    {
+      "step": "03",
+      "title": "Validate",
+      "description": "Measure behavior and outcomes against predefined acceptance criteria."
+    },
+    {
+      "step": "04",
+      "title": "Scale/Transfer",
+      "description": "Provide roadmap, architecture, and operational guidance for production adoption."
+    }
+  ],
+  "case_studies": [
+    {
+      "id": "ops-orchestrator",
+      "title": "Operations Orchestration Assistant",
+      "audience_type": "Internal",
+      "problem": "Operational requests across teams created fragmented triage and slow handoffs.",
+      "prototype": "Built a triage assistant prototype that converted incoming requests into structured workflows and clear ownership paths.",
+      "outcome": "Pilot group reduced manual triage effort and improved response consistency.",
+      "metrics": "38% reduction in manual triage time within first month.",
+      "confidentiality": "anonymized",
+      "redaction_note": "Specific team and tooling details are intentionally redacted.",
+      "cta_label": "Discuss a similar challenge"
+    },
+    {
+      "id": "client-onboarding",
+      "title": "Client Onboarding Accelerator",
+      "audience_type": "External",
+      "problem": "A partner team saw onboarding drop-off before users reached first meaningful value.",
+      "prototype": "Designed a guided onboarding prototype with progressive milestones and adaptive prompts.",
+      "outcome": "Pilot users reached first-success faster and required fewer support escalations.",
+      "metrics": "Time-to-first-success dropped from 14 days to 6 days during pilot.",
+      "confidentiality": "anonymized",
+      "redaction_note": "Client identity and proprietary implementation stack are redacted.",
+      "cta_label": "Discuss a similar challenge"
+    },
+    {
+      "id": "insight-cockpit",
+      "title": "Executive Insight Cockpit",
+      "audience_type": "Internal",
+      "problem": "Leadership lacked a unified view of incubation progress and decision risk across initiatives.",
+      "prototype": "Created a decision cockpit prototype that aggregated milestone health, evidence quality, and action triggers.",
+      "outcome": "Improved weekly prioritization decisions and reduced delay in intervention.",
+      "metrics": "Decision review prep time reduced by 42% across two strategy cycles.",
+      "confidentiality": "restricted",
+      "redaction_note": "Data model details are withheld due to internal confidentiality requirements.",
+      "cta_label": "Discuss a similar challenge"
+    }
+  ],
+  "seo": {
+    "title": "HuTech Ventures Incubation Studio | Solutions and Prototypes",
+    "description": "HuTech Ventures incubates internal and external product solutions through rapid discovery, prototyping, validation, and transfer.",
+    "og_title": "HuTech Ventures Incubation Studio",
+    "og_description": "We create and validate product solutions for internal teams and external partners.",
+    "canonical_url": "https://hutech.ventures/incubation-studio/"
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hutech.ventures/incubation-studio/sitemap.xml

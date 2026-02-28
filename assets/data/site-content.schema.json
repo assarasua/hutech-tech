@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hutech.ventures/schemas/site-content.schema.json",
+  "title": "HuTech Studio Site Content",
+  "type": "object",
+  "required": [
+    "site",
+    "capabilities",
+    "process_steps",
+    "case_studies",
+    "seo"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "site": {
+      "type": "object",
+      "required": [
+        "studio_name",
+        "hero_headline",
+        "hero_subhead",
+        "booking_url",
+        "contact_email"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "studio_name": {
+          "type": "string",
+          "minLength": 2
+        },
+        "hero_headline": {
+          "type": "string",
+          "minLength": 10
+        },
+        "hero_subhead": {
+          "type": "string",
+          "minLength": 20
+        },
+        "booking_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "contact_email": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "title",
+          "description"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 3
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
+      }
+    },
+    "process_steps": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "step",
+          "title",
+          "description"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "step": {
+            "type": "string",
+            "pattern": "^[0-9]{2}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
+      }
+    },
+    "case_studies": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "audience_type",
+          "problem",
+          "prototype",
+          "outcome",
+          "metrics",
+          "confidentiality",
+          "redaction_note",
+          "cta_label"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 5
+          },
+          "audience_type": {
+            "type": "string",
+            "enum": [
+              "Internal",
+              "External"
+            ]
+          },
+          "problem": {
+            "type": "string",
+            "minLength": 10
+          },
+          "prototype": {
+            "type": "string",
+            "minLength": 10
+          },
+          "outcome": {
+            "type": "string",
+            "minLength": 10
+          },
+          "metrics": {
+            "type": "string",
+            "minLength": 5
+          },
+          "confidentiality": {
+            "type": "string",
+            "enum": [
+              "public",
+              "anonymized",
+              "restricted"
+            ]
+          },
+          "redaction_note": {
+            "type": "string",
+            "minLength": 5
+          },
+          "cta_label": {
+            "type": "string",
+            "minLength": 5
+          }
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "required": [
+        "title",
+        "description",
+        "og_title",
+        "og_description",
+        "canonical_url"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 10
+        },
+        "description": {
+          "type": "string",
+          "minLength": 20
+        },
+        "og_title": {
+          "type": "string",
+          "minLength": 5
+        },
+        "og_description": {
+          "type": "string",
+          "minLength": 10
+        },
+        "canonical_url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  }
+}
