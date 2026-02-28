@@ -1,10 +1,14 @@
 {
   "site": {
-    "studio_name": "HuTech Ventures",
-    "hero_headline": "Building healthtech products that advance human well-being.",
-    "hero_subhead": "We run an internal venture track to turn high-impact opportunities into working healthtech products with clinical-grade rigor and startup speed.",
-    "booking_url": "mailto:as@hutech.ventures?subject=Internal%20Product%20Challenge%20-%20HuTech&body=Hello%20HuTech%20Ventures%2C%0A%0ATeam%2FContext%3A%0AProblem%20to%20solve%3A%0ADesired%20timeline%3A%0A%0AWe%20would%20like%20to%20discuss%20an%20internal%20product%20challenge.",
+    "studio_name": "HuTech Product Studio",
+    "hero_headline": "We accelerate any challenge into practical solutions and measurable outcomes.",
+    "hero_subhead": "HuTech Product Studio, part of HuTech Ventures, works across product, operational, and growth challenges using a structured model from Problem to Prototype to Minimum Awesome Product.",
+    "booking_url": "mailto:as@hutech.ventures",
     "contact_email": "as@hutech.ventures"
+  },
+  "brand_distinction": {
+    "message": "HuTech Ventures and HuTech Tech are separate initiatives. This site represents HuTech Product Studio within HuTech Ventures.",
+    "hutech_tech_url": ""
   },
   "trust_signals": [
     {
@@ -21,14 +25,13 @@
     },
     {
       "label": "Delivery Model",
-      "value": "Problem -> Prototype -> MAP"
+      "value": "Problem -> Prototype -> Minimum Awesome Product"
     }
   ],
   "cta": {
-    "primary_label": "Email HuTech Ventures",
+    "primary_label": "Email us",
     "secondary_label": "View case study",
-    "email_subject": "Internal Product Challenge - HuTech",
-    "email_body_template": "Hello HuTech Ventures,\n\nTeam/Context:\nProblem to solve:\nDesired timeline:\n\nWe would like to discuss an internal product challenge."
+    "helper_text": "Email us only: as@hutech.ventures"
   },
   "capabilities": [
     {
@@ -58,7 +61,7 @@
     {
       "step": "03",
       "title": "Minimum Awesome Product",
-      "description": "Convert the prototype into a launch-ready MAP with integrations and automation in about 2 months total."
+      "description": "Convert the prototype into a launch-ready Minimum Awesome Product with integrations and automation in about 2 months total."
     }
   ],
   "case_studies": [
@@ -76,10 +79,10 @@
     }
   ],
   "seo": {
-    "title": "HuTech Ventures Healthtech Venture Studio | Internal Product Incubation",
-    "description": "HuTech Ventures builds internal healthtech products from Problem to Prototype to Minimum Awesome Product in 2 months.",
-    "og_title": "HuTech Ventures Healthtech Venture Studio",
-    "og_description": "Building healthtech products that advance human well-being through internal venture incubation.",
+    "title": "HuTech Product Studio | Part of HuTech Ventures",
+    "description": "HuTech Product Studio, part of HuTech Ventures, accelerates any challenge into practical solutions and measurable outcomes.",
+    "og_title": "HuTech Product Studio | Part of HuTech Ventures",
+    "og_description": "We accelerate product, operational, and growth challenges into practical outcomes.",
     "canonical_url": "https://hutech.ventures/incubation-studio/"
   }
 }

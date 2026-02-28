@@ -278,11 +278,37 @@ p {
   color: var(--text-muted);
 }
 
+.hero-distinction {
+  margin: 0 0 1.15rem;
+  max-width: 76ch;
+  color: #2f5465;
+  font-size: 0.96rem;
+}
+
+.hero-distinction a {
+  color: #0b5d79;
+  font-weight: 700;
+  margin-left: 0.35rem;
+  white-space: nowrap;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin: 1.5rem 0 1.9rem;
+  margin: 1.2rem 0 0.7rem;
+}
+
+.hero-helper {
+  margin: 0 0 1.3rem;
+  color: #0b5d79;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.hero-helper a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .hero-metrics {
@@ -507,10 +533,34 @@ p {
 }
 
 .why-grid article {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(173, 190, 202, 0.85);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.9), rgba(224, 247, 255, 0.82));
+  border: 1px solid rgba(77, 140, 171, 0.32);
   border-radius: var(--radius-md);
   padding: 1rem;
+  box-shadow: 0 10px 22px rgba(8, 49, 70, 0.09);
+}
+
+.section-why-focus {
+  position: relative;
+}
+
+.section-why-focus::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 127, 135, 0.35), transparent);
+}
+
+.section-why-focus .section-intro {
+  max-width: 78ch;
+}
+
+.section-why-focus .why-grid article h3 {
+  color: #0a3b52;
 }
 
 .signal-list {
@@ -670,6 +720,11 @@ p {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .final-cta-inner .btn {
+    width: 100%;
+    max-width: 360px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -686,6 +741,38 @@ p {
 
   .hero {
     padding-top: 2.8rem;
+  }
+
+  .hero-subhead,
+  .hero-distinction {
+    max-width: 100%;
+    line-height: 1.62;
+  }
+
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-helper {
+    margin-bottom: 1rem;
+    word-break: break-word;
+  }
+
+  .about-card,
+  .why-grid article {
+    padding: 1rem 0.95rem;
+  }
+
+  .about-list {
+    gap: 0.65rem;
+    line-height: 1.6;
   }
 
   .lane-grid,

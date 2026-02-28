@@ -5,6 +5,7 @@
   "type": "object",
   "required": [
     "site",
+    "brand_distinction",
     "trust_signals",
     "cta",
     "capabilities",
@@ -47,6 +48,22 @@
         }
       }
     },
+    "brand_distinction": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "type": "string",
+          "minLength": 10
+        },
+        "hutech_tech_url": {
+          "type": "string"
+        }
+      }
+    },
     "trust_signals": {
       "type": "array",
       "minItems": 4,
@@ -74,8 +91,7 @@
       "required": [
         "primary_label",
         "secondary_label",
-        "email_subject",
-        "email_body_template"
+        "helper_text"
       ],
       "additionalProperties": false,
       "properties": {
@@ -87,13 +103,9 @@
           "type": "string",
           "minLength": 3
         },
-        "email_subject": {
+        "helper_text": {
           "type": "string",
           "minLength": 3
-        },
-        "email_body_template": {
-          "type": "string",
-          "minLength": 10
         }
       }
     },

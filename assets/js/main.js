@@ -1,11 +1,10 @@
 (() => {
   const CONTENT_URL = "assets/data/site-content.json";
-  let currentBookingUrl = "mailto:as@hutech.ventures?subject=Internal%20Product%20Challenge%20-%20HuTech&body=Hello%20HuTech%20Ventures%2C%0A%0ATeam%2FContext%3A%0AProblem%20to%20solve%3A%0ADesired%20timeline%3A%0A%0AWe%20would%20like%20to%20discuss%20an%20internal%20product%20challenge.";
+  let currentBookingUrl = "mailto:as@hutech.ventures";
   let currentCtaConfig = {
-    primary_label: "Email HuTech Ventures",
+    primary_label: "Email us",
     secondary_label: "View case study",
-    email_subject: "Internal Product Challenge - HuTech",
-    email_body_template: "Hello HuTech Ventures,\n\nTeam/Context:\nProblem to solve:\nDesired timeline:\n\nWe would like to discuss an internal product challenge."
+    helper_text: "Email us only: as@hutech.ventures"
   };
   const BOOKING_UTM_DEFAULTS = {
     utm_source: "incubation_studio_site",
@@ -69,6 +68,7 @@
     }
 
     applyCtaContent(content.cta, site.contact_email, site.booking_url);
+    applyBrandDistinction(content.brand_distinction);
 
     if (Array.isArray(content.trust_signals) && content.trust_signals.length > 0) {
       renderTrustSignals(content.trust_signals);
@@ -107,10 +107,11 @@
       setText("hero-email-cta", currentCtaConfig.primary_label);
       setText("final-email-cta", currentCtaConfig.primary_label);
       setText("hero-secondary-cta", currentCtaConfig.secondary_label);
+      setText("hero-cta-helper", currentCtaConfig.helper_text);
     }
 
-    if (contactEmail && (currentCtaConfig.email_subject || currentCtaConfig.email_body_template)) {
-      currentBookingUrl = buildMailtoBase(contactEmail, currentCtaConfig.email_subject, currentCtaConfig.email_body_template);
+    if (contactEmail) {
+      currentBookingUrl = `mailto:${contactEmail}`;
       setBookingBaseLinks(currentBookingUrl);
       return;
     }
@@ -118,6 +119,27 @@
     if (fallbackUrl) {
       currentBookingUrl = fallbackUrl;
       setBookingBaseLinks(currentBookingUrl);
+    }
+  }
+
+  function applyBrandDistinction(brandDistinction) {
+    if (!brandDistinction || typeof brandDistinction !== "object") {
+      return;
+    }
+
+    setText("brand-distinction-text", brandDistinction.message);
+
+    const link = document.getElementById("hutech-tech-link");
+    if (!link) {
+      return;
+    }
+
+    const url = brandDistinction.hutech_tech_url || "";
+    if (typeof url === "string" && url.trim().length > 0) {
+      link.href = url;
+      link.hidden = false;
+    } else {
+      link.hidden = true;
     }
   }
 
@@ -471,7 +493,7 @@
 
   function buildCtaHref(url, source) {
     if (isMailtoUrl(url)) {
-      return withMailtoParams(url, source);
+      return withMailtoParams(url);
     }
 
     return withTrackingParams(url, {
@@ -498,26 +520,14 @@
     }
   }
 
-  function withMailtoParams(url, source) {
+  function withMailtoParams(url) {
     if (!url) {
       return url;
     }
 
     try {
       const target = new URL(url, window.location.href);
-
-      if (!target.searchParams.get("subject")) {
-        target.searchParams.set("subject", currentCtaConfig.email_subject || "Internal Product Challenge - HuTech");
-      }
-
-      const existingBody = target.searchParams.get("body");
-      const baseBody = existingBody || currentCtaConfig.email_body_template;
-      if (baseBody) {
-        const normalizedBody = baseBody.includes("Source:") ? baseBody : `${baseBody}\n\nSource: ${source}`;
-        target.searchParams.set("body", normalizedBody);
-      }
-
-      return target.toString();
+      return `mailto:${target.pathname}`;
     } catch (error) {
       return url;
     }
@@ -529,12 +539,6 @@
 
   function isHttpUrl(url) {
     return /^https?:/i.test(url);
-  }
-
-  function buildMailtoBase(email, subject, body) {
-    const encodedSubject = encodeURIComponent(subject || "Internal Product Challenge - HuTech");
-    const encodedBody = encodeURIComponent(body || "");
-    return `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
   }
 
   function setText(id, value) {

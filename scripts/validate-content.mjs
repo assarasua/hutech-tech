@@ -46,18 +46,35 @@ function validateContentShape(content, errors) {
     return;
   }
 
-  const requiredRootKeys = ["site", "trust_signals", "cta", "capabilities", "process_steps", "case_studies", "seo"];
+  const requiredRootKeys = ["site", "brand_distinction", "trust_signals", "cta", "capabilities", "process_steps", "case_studies", "seo"];
   requiredRootKeys.forEach((key) => {
     assert(key in content, `Missing required root key: ${key}`, errors);
   });
 
   validateSite(content.site, errors);
+  validateBrandDistinction(content.brand_distinction, errors);
   validateTrustSignals(content.trust_signals, errors);
   validateCta(content.cta, errors);
   validateCapabilities(content.capabilities, errors);
   validateProcessSteps(content.process_steps, errors);
   validateCaseStudies(content.case_studies, errors);
   validateSeo(content.seo, errors);
+}
+
+function validateBrandDistinction(brandDistinction, errors) {
+  assert(isObject(brandDistinction), "brand_distinction must be an object.", errors);
+  if (!isObject(brandDistinction)) {
+    return;
+  }
+
+  assert(typeof brandDistinction.message === "string" && brandDistinction.message.trim().length >= 10, "brand_distinction.message must be at least 10 characters.", errors);
+  if ("hutech_tech_url" in brandDistinction) {
+    assert(typeof brandDistinction.hutech_tech_url === "string", "brand_distinction.hutech_tech_url must be a string.", errors);
+  }
+
+  if (typeof brandDistinction.hutech_tech_url === "string" && brandDistinction.hutech_tech_url.trim().length > 0) {
+    assert(isValidUrl(brandDistinction.hutech_tech_url), "brand_distinction.hutech_tech_url must be a valid http(s) URL when provided.", errors);
+  }
 }
 
 function validateTrustSignals(trustSignals, errors) {
@@ -86,7 +103,7 @@ function validateCta(cta, errors) {
     return;
   }
 
-  const keys = ["primary_label", "secondary_label", "email_subject", "email_body_template"];
+  const keys = ["primary_label", "secondary_label", "helper_text"];
   keys.forEach((key) => {
     assert(typeof cta[key] === "string" && cta[key].trim().length > 0, `cta.${key} must be a non-empty string.`, errors);
   });
