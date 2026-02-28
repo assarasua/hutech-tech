@@ -25,6 +25,15 @@ function isValidUrl(value) {
   }
 }
 
+function isValidContactUri(value) {
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "http:" || parsed.protocol === "https:" || parsed.protocol === "mailto:";
+  } catch {
+    return false;
+  }
+}
+
 function assert(condition, message, errors) {
   if (!condition) {
     errors.push(message);
@@ -37,16 +46,50 @@ function validateContentShape(content, errors) {
     return;
   }
 
-  const requiredRootKeys = ["site", "capabilities", "process_steps", "case_studies", "seo"];
+  const requiredRootKeys = ["site", "trust_signals", "cta", "capabilities", "process_steps", "case_studies", "seo"];
   requiredRootKeys.forEach((key) => {
     assert(key in content, `Missing required root key: ${key}`, errors);
   });
 
   validateSite(content.site, errors);
+  validateTrustSignals(content.trust_signals, errors);
+  validateCta(content.cta, errors);
   validateCapabilities(content.capabilities, errors);
   validateProcessSteps(content.process_steps, errors);
   validateCaseStudies(content.case_studies, errors);
   validateSeo(content.seo, errors);
+}
+
+function validateTrustSignals(trustSignals, errors) {
+  assert(Array.isArray(trustSignals), "trust_signals must be an array.", errors);
+  if (!Array.isArray(trustSignals)) {
+    return;
+  }
+
+  assert(trustSignals.length >= 4, "trust_signals must include at least 4 entries.", errors);
+
+  trustSignals.forEach((signal, index) => {
+    const prefix = `trust_signals[${index}]`;
+    assert(isObject(signal), `${prefix} must be an object.`, errors);
+    if (!isObject(signal)) {
+      return;
+    }
+
+    assert(typeof signal.label === "string" && signal.label.trim().length >= 3, `${prefix}.label must be at least 3 characters.`, errors);
+    assert(typeof signal.value === "string" && signal.value.trim().length >= 3, `${prefix}.value must be at least 3 characters.`, errors);
+  });
+}
+
+function validateCta(cta, errors) {
+  assert(isObject(cta), "cta must be an object.", errors);
+  if (!isObject(cta)) {
+    return;
+  }
+
+  const keys = ["primary_label", "secondary_label", "email_subject", "email_body_template"];
+  keys.forEach((key) => {
+    assert(typeof cta[key] === "string" && cta[key].trim().length > 0, `cta.${key} must be a non-empty string.`, errors);
+  });
 }
 
 function validateSite(site, errors) {
@@ -61,7 +104,7 @@ function validateSite(site, errors) {
   });
 
   if (typeof site.booking_url === "string") {
-    assert(isValidUrl(site.booking_url), "site.booking_url must be a valid http(s) URL.", errors);
+    assert(isValidContactUri(site.booking_url), "site.booking_url must be a valid http(s) or mailto URI.", errors);
   }
 
   if (typeof site.contact_email === "string") {
@@ -95,7 +138,7 @@ function validateProcessSteps(processSteps, errors) {
     return;
   }
 
-  assert(processSteps.length === 4, "process_steps must include exactly 4 steps.", errors);
+  assert(processSteps.length === 3, "process_steps must include exactly 3 steps.", errors);
 
   processSteps.forEach((step, index) => {
     const prefix = `process_steps[${index}]`;
@@ -116,7 +159,7 @@ function validateCaseStudies(caseStudies, errors) {
     return;
   }
 
-  assert(caseStudies.length >= 2, "case_studies must include at least 2 entries.", errors);
+  assert(caseStudies.length >= 1, "case_studies must include at least 1 entry.", errors);
 
   const validAudience = new Set(["Internal", "External"]);
   const validConfidentiality = new Set(["public", "anonymized", "restricted"]);

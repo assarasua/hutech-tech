@@ -1,6 +1,12 @@
 (() => {
   const CONTENT_URL = "assets/data/site-content.json";
-  let currentBookingUrl = "https://cal.com/hutech-ventures/discovery";
+  let currentBookingUrl = "mailto:as@hutech.ventures?subject=Internal%20Product%20Challenge%20-%20HuTech&body=Hello%20HuTech%20Ventures%2C%0A%0ATeam%2FContext%3A%0AProblem%20to%20solve%3A%0ADesired%20timeline%3A%0A%0AWe%20would%20like%20to%20discuss%20an%20internal%20product%20challenge.";
+  let currentCtaConfig = {
+    primary_label: "Email HuTech Ventures",
+    secondary_label: "View case study",
+    email_subject: "Internal Product Challenge - HuTech",
+    email_body_template: "Hello HuTech Ventures,\n\nTeam/Context:\nProblem to solve:\nDesired timeline:\n\nWe would like to discuss an internal product challenge."
+  };
   const BOOKING_UTM_DEFAULTS = {
     utm_source: "incubation_studio_site",
     utm_medium: "website",
@@ -62,9 +68,10 @@
       contactEmailLink.setAttribute("href", `mailto:${site.contact_email}`);
     }
 
-    if (site.booking_url) {
-      currentBookingUrl = site.booking_url;
-      setBookingBaseLinks(currentBookingUrl);
+    applyCtaContent(content.cta, site.contact_email, site.booking_url);
+
+    if (Array.isArray(content.trust_signals) && content.trust_signals.length > 0) {
+      renderTrustSignals(content.trust_signals);
     }
 
     if (Array.isArray(content.capabilities) && content.capabilities.length > 0) {
@@ -88,6 +95,54 @@
         node.textContent = site.studio_name;
       });
     }
+  }
+
+  function applyCtaContent(cta, contactEmail, fallbackUrl) {
+    if (cta && typeof cta === "object") {
+      currentCtaConfig = {
+        ...currentCtaConfig,
+        ...cta
+      };
+
+      setText("hero-email-cta", currentCtaConfig.primary_label);
+      setText("final-email-cta", currentCtaConfig.primary_label);
+      setText("hero-secondary-cta", currentCtaConfig.secondary_label);
+    }
+
+    if (contactEmail && (currentCtaConfig.email_subject || currentCtaConfig.email_body_template)) {
+      currentBookingUrl = buildMailtoBase(contactEmail, currentCtaConfig.email_subject, currentCtaConfig.email_body_template);
+      setBookingBaseLinks(currentBookingUrl);
+      return;
+    }
+
+    if (fallbackUrl) {
+      currentBookingUrl = fallbackUrl;
+      setBookingBaseLinks(currentBookingUrl);
+    }
+  }
+
+  function renderTrustSignals(trustSignals) {
+    const list = document.getElementById("trust-signal-list");
+    if (!list) {
+      return;
+    }
+
+    list.innerHTML = "";
+    trustSignals.forEach((signal) => {
+      const item = document.createElement("li");
+      item.className = "trust-chip";
+
+      const label = document.createElement("span");
+      label.className = "trust-label";
+      label.textContent = signal.label || "";
+
+      const value = document.createElement("strong");
+      value.textContent = signal.value || "";
+
+      item.appendChild(label);
+      item.appendChild(value);
+      list.appendChild(item);
+    });
   }
 
   function renderCapabilities(capabilities) {
@@ -188,9 +243,11 @@
       cta.className = "btn btn-secondary js-booking-link js-case-cta";
       cta.dataset.source = `case_card_${caseStudy.id || "unknown"}`;
       cta.dataset.baseHref = currentBookingUrl;
-      cta.href = currentBookingUrl;
-      cta.target = "_blank";
-      cta.rel = "noopener";
+      cta.href = buildCtaHref(currentBookingUrl, cta.dataset.source);
+      if (isHttpUrl(currentBookingUrl)) {
+        cta.target = "_blank";
+        cta.rel = "noopener";
+      }
       cta.textContent = caseStudy.cta_label || "Discuss a similar challenge";
       card.appendChild(cta);
 
@@ -393,23 +450,34 @@
   function setBookingBaseLinks(bookingUrl) {
     document.querySelectorAll(".js-booking-link").forEach((link) => {
       link.dataset.baseHref = bookingUrl;
-      link.setAttribute("href", withTrackingParams(bookingUrl, {
-        ...BOOKING_UTM_DEFAULTS,
-        utm_content: link.dataset.source || "unknown"
-      }));
+      const source = link.dataset.source || "unknown";
+      link.setAttribute("href", buildCtaHref(bookingUrl, source));
+
+      if (isHttpUrl(bookingUrl)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener");
+      } else {
+        link.removeAttribute("target");
+        link.removeAttribute("rel");
+      }
     });
   }
 
   function updateBookingHref(link) {
     const baseHref = link.dataset.baseHref || link.getAttribute("href") || "";
     const source = link.dataset.source || "unknown";
+    link.setAttribute("href", buildCtaHref(baseHref, source));
+  }
 
-    const trackedHref = withTrackingParams(baseHref, {
+  function buildCtaHref(url, source) {
+    if (isMailtoUrl(url)) {
+      return withMailtoParams(url, source);
+    }
+
+    return withTrackingParams(url, {
       ...BOOKING_UTM_DEFAULTS,
       utm_content: source
     });
-
-    link.setAttribute("href", trackedHref);
   }
 
   function withTrackingParams(url, params) {
@@ -428,6 +496,45 @@
     } catch (error) {
       return url;
     }
+  }
+
+  function withMailtoParams(url, source) {
+    if (!url) {
+      return url;
+    }
+
+    try {
+      const target = new URL(url, window.location.href);
+
+      if (!target.searchParams.get("subject")) {
+        target.searchParams.set("subject", currentCtaConfig.email_subject || "Internal Product Challenge - HuTech");
+      }
+
+      const existingBody = target.searchParams.get("body");
+      const baseBody = existingBody || currentCtaConfig.email_body_template;
+      if (baseBody) {
+        const normalizedBody = baseBody.includes("Source:") ? baseBody : `${baseBody}\n\nSource: ${source}`;
+        target.searchParams.set("body", normalizedBody);
+      }
+
+      return target.toString();
+    } catch (error) {
+      return url;
+    }
+  }
+
+  function isMailtoUrl(url) {
+    return /^mailto:/i.test(url);
+  }
+
+  function isHttpUrl(url) {
+    return /^https?:/i.test(url);
+  }
+
+  function buildMailtoBase(email, subject, body) {
+    const encodedSubject = encodeURIComponent(subject || "Internal Product Challenge - HuTech");
+    const encodedBody = encodeURIComponent(body || "");
+    return `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
   }
 
   function setText(id, value) {

@@ -5,6 +5,8 @@
   "type": "object",
   "required": [
     "site",
+    "trust_signals",
+    "cta",
     "capabilities",
     "process_steps",
     "case_studies",
@@ -45,6 +47,56 @@
         }
       }
     },
+    "trust_signals": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "value"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 3
+          },
+          "value": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "cta": {
+      "type": "object",
+      "required": [
+        "primary_label",
+        "secondary_label",
+        "email_subject",
+        "email_body_template"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "primary_label": {
+          "type": "string",
+          "minLength": 3
+        },
+        "secondary_label": {
+          "type": "string",
+          "minLength": 3
+        },
+        "email_subject": {
+          "type": "string",
+          "minLength": 3
+        },
+        "email_body_template": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
     "capabilities": {
       "type": "array",
       "minItems": 3,
@@ -69,8 +121,8 @@
     },
     "process_steps": {
       "type": "array",
-      "minItems": 4,
-      "maxItems": 4,
+      "minItems": 3,
+      "maxItems": 3,
       "items": {
         "type": "object",
         "required": [
@@ -97,7 +149,7 @@
     },
     "case_studies": {
       "type": "array",
-      "minItems": 2,
+      "minItems": 1,
       "items": {
         "type": "object",
         "required": [

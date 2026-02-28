@@ -1,10 +1,34 @@
 {
   "site": {
     "studio_name": "HuTech Ventures",
-    "hero_headline": "We incubate product ideas into validated solutions.",
-    "hero_subhead": "HuTech Ventures partners with internal teams and external organizations to move from problem framing to working prototypes and production-ready handoff plans.",
-    "booking_url": "https://cal.com/hutech-ventures/discovery",
-    "contact_email": "studio@hutech.ventures"
+    "hero_headline": "Building healthtech products that advance human well-being.",
+    "hero_subhead": "We run an internal venture track to turn high-impact opportunities into working healthtech products with clinical-grade rigor and startup speed.",
+    "booking_url": "mailto:as@hutech.ventures?subject=Internal%20Product%20Challenge%20-%20HuTech&body=Hello%20HuTech%20Ventures%2C%0A%0ATeam%2FContext%3A%0AProblem%20to%20solve%3A%0ADesired%20timeline%3A%0A%0AWe%20would%20like%20to%20discuss%20an%20internal%20product%20challenge.",
+    "contact_email": "as@hutech.ventures"
+  },
+  "trust_signals": [
+    {
+      "label": "Core Sectors",
+      "value": "Health Tracking, Diagnostics, Robotics"
+    },
+    {
+      "label": "Who We Advise",
+      "value": "Startups, Corporates, Investors"
+    },
+    {
+      "label": "Coverage",
+      "value": "US, EMEA, Japan"
+    },
+    {
+      "label": "Delivery Model",
+      "value": "Problem -> Prototype -> MAP"
+    }
+  ],
+  "cta": {
+    "primary_label": "Email HuTech Ventures",
+    "secondary_label": "View case study",
+    "email_subject": "Internal Product Challenge - HuTech",
+    "email_body_template": "Hello HuTech Ventures,\n\nTeam/Context:\nProblem to solve:\nDesired timeline:\n\nWe would like to discuss an internal product challenge."
   },
   "capabilities": [
     {
@@ -23,68 +47,39 @@
   "process_steps": [
     {
       "step": "01",
-      "title": "Discover",
-      "description": "Clarify user needs, constraints, and success signals with a concise problem brief."
+      "title": "Problem",
+      "description": "Define the business problem, target users, and measurable outcomes before building."
     },
     {
       "step": "02",
       "title": "Prototype",
-      "description": "Build and iterate a focused solution slice that demonstrates value quickly."
+      "description": "Build and iterate a focused solution slice to test feasibility and user value quickly."
     },
     {
       "step": "03",
-      "title": "Validate",
-      "description": "Measure behavior and outcomes against predefined acceptance criteria."
-    },
-    {
-      "step": "04",
-      "title": "Scale/Transfer",
-      "description": "Provide roadmap, architecture, and operational guidance for production adoption."
+      "title": "Minimum Awesome Product",
+      "description": "Convert the prototype into a launch-ready MAP with integrations and automation in about 2 months total."
     }
   ],
   "case_studies": [
     {
-      "id": "ops-orchestrator",
-      "title": "Operations Orchestration Assistant",
+      "id": "business-card-intelligence",
+      "title": "Business Card Intelligence and Follow-up Automation",
       "audience_type": "Internal",
-      "problem": "Operational requests across teams created fragmented triage and slow handoffs.",
-      "prototype": "Built a triage assistant prototype that converted incoming requests into structured workflows and clear ownership paths.",
-      "outcome": "Pilot group reduced manual triage effort and improved response consistency.",
-      "metrics": "38% reduction in manual triage time within first month.",
+      "problem": "Internal GTM teams collected business cards but relied on manual data entry, delaying follow-up and causing lost leads.",
+      "prototype": "Built a business card scanning tool that extracts contact details, enriches profiles with LinkedIn information, and syncs contacts automatically.",
+      "outcome": "Sales teams can trigger immediate outreach and automated follow-up campaigns instead of manually chasing contacts.",
+      "metrics": "Reduced post-event contact processing time and accelerated first-touch email response windows.",
       "confidentiality": "anonymized",
-      "redaction_note": "Specific team and tooling details are intentionally redacted.",
-      "cta_label": "Discuss a similar challenge"
-    },
-    {
-      "id": "client-onboarding",
-      "title": "Client Onboarding Accelerator",
-      "audience_type": "External",
-      "problem": "A partner team saw onboarding drop-off before users reached first meaningful value.",
-      "prototype": "Designed a guided onboarding prototype with progressive milestones and adaptive prompts.",
-      "outcome": "Pilot users reached first-success faster and required fewer support escalations.",
-      "metrics": "Time-to-first-success dropped from 14 days to 6 days during pilot.",
-      "confidentiality": "anonymized",
-      "redaction_note": "Client identity and proprietary implementation stack are redacted.",
-      "cta_label": "Discuss a similar challenge"
-    },
-    {
-      "id": "insight-cockpit",
-      "title": "Executive Insight Cockpit",
-      "audience_type": "Internal",
-      "problem": "Leadership lacked a unified view of incubation progress and decision risk across initiatives.",
-      "prototype": "Created a decision cockpit prototype that aggregated milestone health, evidence quality, and action triggers.",
-      "outcome": "Improved weekly prioritization decisions and reduced delay in intervention.",
-      "metrics": "Decision review prep time reduced by 42% across two strategy cycles.",
-      "confidentiality": "restricted",
-      "redaction_note": "Data model details are withheld due to internal confidentiality requirements.",
-      "cta_label": "Discuss a similar challenge"
+      "redaction_note": "Internal CRM workflow logic is intentionally redacted.",
+      "cta_label": "Discuss an internal challenge"
     }
   ],
   "seo": {
-    "title": "HuTech Ventures Incubation Studio | Solutions and Prototypes",
-    "description": "HuTech Ventures incubates internal and external product solutions through rapid discovery, prototyping, validation, and transfer.",
-    "og_title": "HuTech Ventures Incubation Studio",
-    "og_description": "We create and validate product solutions for internal teams and external partners.",
+    "title": "HuTech Ventures Healthtech Venture Studio | Internal Product Incubation",
+    "description": "HuTech Ventures builds internal healthtech products from Problem to Prototype to Minimum Awesome Product in 2 months.",
+    "og_title": "HuTech Ventures Healthtech Venture Studio",
+    "og_description": "Building healthtech products that advance human well-being through internal venture incubation.",
     "canonical_url": "https://hutech.ventures/incubation-studio/"
   }
 }
