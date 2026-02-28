@@ -569,6 +569,19 @@ p {
   color: #0a3b52;
 }
 
+.team-list {
+  margin: 0.2rem 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+  color: var(--text-muted);
+}
+
+.team-list a {
+  color: #0d6179;
+  font-weight: 700;
+}
+
 .signal-list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
