@@ -449,6 +449,7 @@
     const toggle = document.getElementById("nav-toggle");
     const drawer = document.getElementById("nav-drawer");
     const backdrop = document.getElementById("nav-backdrop");
+    const toggleLabel = toggle?.querySelector(".nav-toggle-label");
 
     if (!toggle || !drawer || !backdrop) {
       return;
@@ -461,6 +462,9 @@
       document.body.classList.toggle("is-nav-open", isOpen);
       toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
       toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+      if (toggleLabel) {
+        toggleLabel.textContent = isOpen ? "Close" : "Menu";
+      }
       backdrop.hidden = !isOpen;
     };
 
@@ -518,8 +522,8 @@
     const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_TEAM_BREAKPOINT}px)`);
 
     const applyViewportMode = () => {
-      items.forEach((item, index) => {
-        item.open = mediaQuery.matches ? index === 0 : true;
+      items.forEach((item) => {
+        item.open = mediaQuery.matches ? false : true;
       });
     };
 
