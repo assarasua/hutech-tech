@@ -569,6 +569,16 @@ p {
   color: #0a3b52;
 }
 
+.why-team-panel {
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.92), rgba(224, 247, 255, 0.86));
+  border: 1px solid rgba(77, 140, 171, 0.34);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  box-shadow: 0 10px 22px rgba(8, 49, 70, 0.09);
+  margin-bottom: 1rem;
+}
+
 .team-list {
   margin: 0.2rem 0 0;
   padding-left: 1.1rem;
