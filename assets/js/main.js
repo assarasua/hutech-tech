@@ -447,6 +447,7 @@
 
   function setupMobileNav() {
     const toggle = document.getElementById("nav-toggle");
+    const closeButton = document.getElementById("nav-close");
     const drawer = document.getElementById("nav-drawer");
     const backdrop = document.getElementById("nav-backdrop");
     const toggleLabel = toggle?.querySelector(".nav-toggle-label");
@@ -481,6 +482,7 @@
     });
 
     backdrop.addEventListener("click", closeNav);
+    closeButton?.addEventListener("click", closeNav);
 
     navLinks.forEach((link) => {
       link.addEventListener("click", closeNav);
